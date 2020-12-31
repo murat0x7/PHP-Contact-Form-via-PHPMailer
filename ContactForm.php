@@ -7,11 +7,14 @@ require 'Pathfile/PHPMailer/src/PHPMailer.php';
 require 'Pathfile/PHPMailer/src/SMTP.php';
 
 
-/*Suppose that simple contact form you've created which contains input fields like "Name Surname","E-Mail Adress","Phone Number","Message"  and their name values are (NameSurname),(EmailAdress),(PhoneNumber),(Message) ---- After that, send this form to this php file (contactresult) just as <form action="contactresult.php" method="post"> . Since values sent by contact form should be safe, control all of them by using function. To illustrate, 
+/*Suppose that simple contact form you've created which contains input fields like "Name Surname","E-Mail Adress","Phone Number","Message"  and 
+their name values are (NameSurname),(EmailAdress),(PhoneNumber),(Message) ---- 
+After that, send this form to this php file (contactresult) just as <form action="contactresult.php" method="post"> . 
+Since values sent by contact form should be safe, control all of them by using function. To illustrate, 
 
 SecureFields($Data){
 	$FirstCheck			=	trim($Data);
-	$SecondCheck		=	strip_tags($SecondCheck);
+	$SecondCheck		        =	strip_tags($SecondCheck);
 	$ThirdCheck			=	htmlspecialchars($SecondCheck, ENT_QUOTES);
 	$Result				=	$ThirdCheck;
 	return $Result;
@@ -19,9 +22,9 @@ SecureFields($Data){
 */
 
 if(isset($_POST["NameSurname"])){
-	$NameSurnameValue		    =	SecureFields($_POST["NameSurname"]);
+	$NameSurnameValue		=	SecureFields($_POST["NameSurname"]);
 }else{
-	$NameSurnameValue		    =	"";
+	$NameSurnameValue		=	"";
 }
 
 if(isset($_POST["EmailAdress"])){
@@ -31,21 +34,22 @@ if(isset($_POST["EmailAdress"])){
 }
 
 if(isset($_POST["PhoneNumber"])){
-	$PhoneNumberValue	=	SecureFields($_POST["PhoneNumber"]);
+	$PhoneNumberValue	        =	SecureFields($_POST["PhoneNumber"]);
 }else{
-	$PhoneNumberValue	=	"";
+	$PhoneNumberValue	        =	"";
 }
 
 if(isset($_POST["Message"])){
-	$MessageValue				=	SecureFields($_POST["Message"]);
+	$MessageValue			=	SecureFields($_POST["Message"]);
 }else{
-	$MessageValue				=	"";
+	$MessageValue			=	"";
 }
 
 if(($NameSurnameValue!="") and ($EmailAdressValue!="") and ($PhoneNumberValue!="") and ($MessageValue!="")){
-	$PrepareMail		=	"Name Surname : " . $NameSurnameValue . "<br />E-Mail Adress : " . $EmailAdressValue . "<br />Phone Number : " . $PhoneNumberValue . "<br />Message : " . $MessageValue;
+	$PrepareMail		        =	"Name Surname : " . $NameSurnameValue . "<br />E-Mail Adress : " . $EmailAdressValue . "<br />Phone Number : " . 
+	$PhoneNumberValue . "<br />Message : " . $MessageValue;
 	
-	$SentMail		=	new PHPMailer(true);
+	$SentMail		        =	new PHPMailer(true);
 	
 	try{
 		$SentMail->SMTPDebug			=	0;
